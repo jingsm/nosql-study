@@ -1,0 +1,54 @@
+MongoDB Commands Cheatsheet
+The following is the list of the commands:
+
+Start and stop the MongoDB Database:
+
+sudo service mongod start
+sudo service mongod stop
+Access the MongoDB database using Shell:
+
+mongo --host localhost:27017
+Show all databases:
+
+show dbs
+Create a database, say, testdb; Switch to the database:
+
+use testdb
+Until a collection is created in a database, the database name is not listed as a result of execution of the command, "show dbs."
+
+Add a collection:
+
+db.createCollection("user")
+Show all collections in a database; Execute the "use dbname" command to access the database before executing the command given below.
+
+show collections
+show tables
+The following command also work:
+
+db.getCollectionNames()
+Insert a record in the collection; A record is inserted in the collection, "user."
+
+db.user.insert({"name": "Ajitesh Shukla", "location": "hyderabad", "username": "eajitesh"})
+Display list of records of a collection; "user" collection is used.
+
+db.user.find()
+db.user.find().pretty()
+Display a list of records matching with value (s) of specific fields:
+
+db.user.find({"username": "eajitesh"})
+db.user.find({"username": "eajitesh", "location": "hyderabad"})
+Drop the collection:
+
+db.user.drop()
+Create users in the database; The below command creates a user with username as "ajitesh" and having the role such as "readWrite" and "dbAdmin"
+
+db.createUser({"user": "ajitesh", "pwd": "gurukul", "roles": ["readWrite", "dbAdmin"]})
+Show users; If executed without selecting a database, it displays all users along with database information.
+
+show users
+Login into the database with username and password:
+
+mongo -u USERNAME -p PASSWORD --authenticationDatabase DATABASENAME
+For user created in above command, the login command would look like the following:
+
+mongo -u ajitesh -p gurukul --authenticatio
